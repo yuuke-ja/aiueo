@@ -8,16 +8,28 @@ assessmentButton.onclick=function(){
     if(userName.length===0){
         return;
     }
-    resultDivision.innerText='';
+    resultDivision.innerText="";
     //結果を追加
-const header=document.createElement('h3');//h３タグを作る
-    header.innerText='診断結果';
-resultDivision.appendChild(header);//divの小要素として追加
+    const headerDivision = document.createElement('div');
+    headerDivision.setAttribute('class', 'card-header text-bg-primary');
+    headerDivision.innerText = '診断結果';
 
-const paragraph=document.createElement('p');
-const result=assessment(userName);
-paragraph.innerText=result;
-resultDivision.appendChild(paragraph);
+    // bodyDivision の作成
+    const bodyDivision = document.createElement('div');
+    bodyDivision.setAttribute('class', 'card-body');
+
+    const paragraph = document.createElement('p');
+    paragraph.setAttribute('class', 'card-text');
+    const result = assessment(userName);
+    paragraph.innerText = result;
+    bodyDivision.appendChild(paragraph);
+
+    // resultDivision に Bootstrap のスタイルを適用する
+    resultDivision.setAttribute('class', 'card');
+
+    // headerDivision と bodyDivision を resultDivision に差し込む
+    resultDivision.appendChild(headerDivision);
+    resultDivision.appendChild(bodyDivision);
   // ツイートエリアの作成
   tweetDivision.innerText = '';
   const anchor = document.createElement('a');
